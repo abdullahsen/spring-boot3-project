@@ -4,10 +4,12 @@ import com.sena.demo.mycoolapp.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Lazy
 public class FunRestController {
 
     @Value("${developer.name}")
@@ -23,6 +25,7 @@ public class FunRestController {
     @Autowired
     public FunRestController(@Qualifier("tennisCoach") Coach coach) {
         tennisCoach = coach;
+        System.out.println("Constructor " + getClass().getSimpleName());
     }
 
     @Autowired
